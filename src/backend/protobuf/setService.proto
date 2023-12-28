@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service SetService {
+  rpc SetService (SetRequest) returns (SetResponse);
+}
+
+message SetRequest {
+  string key = 1;
+  string value = 2;
+  string token = 3;
+}
+
+message SetResponse {
+  string message = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service AuthenticationService {
+    rpc AuthenticationService (AuthenticationRequest) returns (AuthenticationResponse);
+}
+
+message AuthenticationRequest {
+    string username = 1;
+    string password = 2;
+    string project = 3;
+}
+
+message AuthenticationResponse {
+    string message = 1;
+}

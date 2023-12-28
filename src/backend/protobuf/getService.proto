@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+service GetService {
+    rpc GetService (GetRequest) returns (GetResponse);
+}
+
+message GetRequest {
+    string key = 1;
+    string token = 2;
+}
+
+message Config {
+    string key = 1;
+    string value = 2;
+}
+
+message GetResponse {
+    string message = 1;
+    Config config = 2;
+}
