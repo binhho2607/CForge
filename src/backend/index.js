@@ -1,5 +1,8 @@
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
+const { authenticateGoogle } = require('./middlewares/authentication');
+const { credentials } = require('./credentials/credentials');
+const { setKeyValuePair, getValueForKey } = require('./redis/redis');
 
 const setServicePackageDefinition = protoLoader.loadSync('./protobuf/setService.proto', {
   keepCase: true,
@@ -20,31 +23,63 @@ const getServicePackageDefinition = protoLoader.loadSync('./protobuf/getService.
 const SetService = grpc.loadPackageDefinition(setServicePackageDefinition).SetService;
 const GetService = grpc.loadPackageDefinition(getServicePackageDefinition).GetService;
 
-// TODO: recompile the protos
-// For authentication, store the token in Redis with TTL
-// Requests will have token attached --> compare with the token in Redis
-// In Postgres, store username, hash and salt, projects
-// Also store project --> users, commit history, etc.
-
 const server = new grpc.Server();
-// call.request.key, call.request.value
+
 server.addService(SetService.service, {
-    SetService: (call, callback) => {
-        // function here
-        callback(null, { message: `Hello, ${call.request.name}!` });
+    SetService: async (call, callback) => {
+        const middleware = authenticateGoogle(call, callback);
+        if(middleware === false){
+            return;
+        }
+        // TODO: check if the user belongs to the project
+        // userId is in call.metadata.get("userId")
+        const key = `${call.request.project}_${call.request.key}`;
+        const value = call.request.value;
+        const status = await setKeyValuePair(key, value);
+        if(status !== null){
+            callback(null, {
+                code: grpc.status.OK,
+                message: `Success`
+            });
+        } else {
+            callback(null, {
+                code: grpc.status.INTERNAL,
+                message: `Error`
+            });
+        }
+        
     },
 });
 
 server.addService(GetService.service, {
-    GetService: (call, callback) => {
-        // function here
-        callback(null, { message: `Hello, ${call.request.name}!`, config: {key: "hi", value: "hello"} });
+    GetService: async (call, callback) => {
+        const middleware = authenticateGoogle(call, callback);
+        if(middleware === false){
+            return;
+        }
+        // TODO: check if the user belongs to the project
+        // userId is in call.metadata.get("userId")
+        const key = `${call.request.project}_${call.request.key}`;
+        const value = await getValueForKey(key);
+        if(value !== null){
+            callback(null, {
+                code: grpc.status.OK,
+                message: `Success`,
+                config: {key: key, value: value} 
+            });
+        } else {
+            callback(null, {
+                code: grpc.status.INTERNAL,
+                message: `Error`,
+                config: {key: key, value: null} 
+            });
+        }
     },
 });
 
-const PORT = 50051;
-const HOST = 'localhost';
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
 
-server.bindAsync(`${PORT}`, grpc.ServerCredentials.createInsecure(), () => server.start());
+server.bindAsync(`${PORT}`, credentials, () => server.start());
 
 console.log(`Server running at ${HOST}:${PORT}`);

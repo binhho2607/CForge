@@ -1,12 +1,15 @@
-// source: getService.proto
+// source: getService
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {missingRequire} reports error on implicit type usages.
  * @suppress {messageConventions} JS Compiler reports an error if a variable or
  *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 goog.provide('proto.GetRequest');
 
@@ -67,7 +70,8 @@ proto.GetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.GetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, "")
+    project: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    key: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -106,6 +110,10 @@ proto.GetRequest.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
+      msg.setProject(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
       msg.setKey(value);
       break;
     default:
@@ -137,10 +145,17 @@ proto.GetRequest.prototype.serializeBinary = function() {
  */
 proto.GetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getProject();
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getKey();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
       f
     );
   }
@@ -148,10 +163,10 @@ proto.GetRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string key = 1;
+ * optional string project = 1;
  * @return {string}
  */
-proto.GetRequest.prototype.getKey = function() {
+proto.GetRequest.prototype.getProject = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -160,8 +175,26 @@ proto.GetRequest.prototype.getKey = function() {
  * @param {string} value
  * @return {!proto.GetRequest} returns this
  */
-proto.GetRequest.prototype.setKey = function(value) {
+proto.GetRequest.prototype.setProject = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string key = 2;
+ * @return {string}
+ */
+proto.GetRequest.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.GetRequest} returns this
+ */
+proto.GetRequest.prototype.setKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

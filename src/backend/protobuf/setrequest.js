@@ -1,12 +1,15 @@
-// source: setService.proto
+// source: setService
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {missingRequire} reports error on implicit type usages.
  * @suppress {messageConventions} JS Compiler reports an error if a variable or
  *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 goog.provide('proto.SetRequest');
 
@@ -67,8 +70,9 @@ proto.SetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.SetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, "")
+    project: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    key: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    value: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -107,9 +111,13 @@ proto.SetRequest.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setKey(value);
+      msg.setProject(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setKey(value);
+      break;
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setValue(value);
       break;
@@ -142,17 +150,24 @@ proto.SetRequest.prototype.serializeBinary = function() {
  */
 proto.SetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getProject();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getValue();
+  f = message.getKey();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getValue();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -160,10 +175,10 @@ proto.SetRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string key = 1;
+ * optional string project = 1;
  * @return {string}
  */
-proto.SetRequest.prototype.getKey = function() {
+proto.SetRequest.prototype.getProject = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -172,16 +187,16 @@ proto.SetRequest.prototype.getKey = function() {
  * @param {string} value
  * @return {!proto.SetRequest} returns this
  */
-proto.SetRequest.prototype.setKey = function(value) {
+proto.SetRequest.prototype.setProject = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string value = 2;
+ * optional string key = 2;
  * @return {string}
  */
-proto.SetRequest.prototype.getValue = function() {
+proto.SetRequest.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -190,8 +205,26 @@ proto.SetRequest.prototype.getValue = function() {
  * @param {string} value
  * @return {!proto.SetRequest} returns this
  */
-proto.SetRequest.prototype.setValue = function(value) {
+proto.SetRequest.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string value = 3;
+ * @return {string}
+ */
+proto.SetRequest.prototype.getValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.SetRequest} returns this
+ */
+proto.SetRequest.prototype.setValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

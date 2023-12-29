@@ -1,12 +1,15 @@
-// source: setService.proto
+// source: setService
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {missingRequire} reports error on implicit type usages.
  * @suppress {messageConventions} JS Compiler reports an error if a variable or
  *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 goog.provide('proto.SetResponse');
 
@@ -67,7 +70,8 @@ proto.SetResponse.prototype.toObject = function(opt_includeInstance) {
  */
 proto.SetResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: jspb.Message.getFieldWithDefault(msg, 1, "")
+    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    message: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -105,6 +109,10 @@ proto.SetResponse.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCode(value);
+      break;
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
@@ -137,10 +145,17 @@ proto.SetResponse.prototype.serializeBinary = function() {
  */
 proto.SetResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getCode();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
   f = message.getMessage();
   if (f.length > 0) {
     writer.writeString(
-      1,
+      2,
       f
     );
   }
@@ -148,11 +163,29 @@ proto.SetResponse.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string message = 1;
+ * optional uint32 code = 1;
+ * @return {number}
+ */
+proto.SetResponse.prototype.getCode = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.SetResponse} returns this
+ */
+proto.SetResponse.prototype.setCode = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string message = 2;
  * @return {string}
  */
 proto.SetResponse.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -161,7 +194,7 @@ proto.SetResponse.prototype.getMessage = function() {
  * @return {!proto.SetResponse} returns this
  */
 proto.SetResponse.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

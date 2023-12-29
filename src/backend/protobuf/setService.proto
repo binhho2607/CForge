@@ -5,11 +5,12 @@ service SetService {
 }
 
 message SetRequest {
-  string key = 1;
-  string value = 2;
-  string token = 3;
+  string project = 1;
+  string key = 2;
+  string value = 3;
 }
 
 message SetResponse {
-  string message = 1;
+  uint32 code = 1;
+  string message = 2;
 }
