@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service GetProjectsFromUserService {
+    rpc GetProjectsFromUserService (GetProjectsFromUserRequest) returns (GetProjectsFromUserResponse);
+}
+
+message GetProjectsFromUserRequest {
+
+}
+
+message Project {
+    string projectId = 1;
+    string projectName = 2;
+}
+
+message GetProjectsFromUserResponse {
+    uint32 code = 1;
+    repeated Project projects = 2;
+}

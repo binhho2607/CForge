@@ -1,7 +1,6 @@
 const Redis = require('ioredis');
 require('dotenv').config()
 
-console.log(process.env.REDIS_URL)
 const redis = new Redis(process.env.REDIS_URL);
 
 // Function to set a key-value pair
@@ -14,6 +13,18 @@ async function setKeyValuePair(key, value) {
       console.error('Error setting key-value pair:', error);
       return null;
     }
+}
+
+// Function to set a key-value pair with TTL
+async function setKeyValuePairWithTTL(key, value, ttl) {
+  try {
+    await redis.set(key, value, 'EX', ttl);
+    console.log(`Key "${key}" set to "${value} with TTL ${ttl}"`);
+    return true;
+  } catch (error) {
+    console.error('Error setting key-value pair:', error);
+    return null;
+  }
 }
 
 // Function to get the value for a given key
@@ -30,7 +41,8 @@ async function getValueForKey(key) {
 
 module.exports = {
   setKeyValuePair,
-  getValueForKey
+  getValueForKey,
+  setKeyValuePairWithTTL
 }
 
 

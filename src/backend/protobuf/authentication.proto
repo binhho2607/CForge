@@ -5,9 +5,7 @@ service AuthenticationService {
 }
 
 message AuthenticationRequest {
-    string username = 1;
-    string password = 2;
-    string project = 3;
+    string googleToken = 1;
 }
 
 message AuthenticationResponse {

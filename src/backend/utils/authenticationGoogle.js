@@ -3,12 +3,12 @@ require('dotenv').config()
 
 const authenticateGoogle = async (call, callback) => {
     const auth = new GoogleAuth();
-    const client = await auth.getIdTokenClient(call.metadata.get('authorization')[0]);
+    const client = await auth.getIdTokenClient(call.metadata.get('googleToken')[0]);
   
     // Verify the ID token
     try {
       const ticket = await client.verifyIdToken({
-        idToken: call.metadata.get('authorization')[0],
+        idToken: call.metadata.get('googleToken')[0],
         audience: process.env.GOOGLE_CLIENT_ID,
       });
   
