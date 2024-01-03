@@ -39,10 +39,34 @@ async function getValueForKey(key) {
     }
 }
 
+// Function to scan all keys with a given prefix
+async function getAllKeyValuesWithPrefix(prefix) {
+  const keys = [];
+  let cursor = '0';
+
+  do {
+    const result = await redis.scan(cursor, 'MATCH', `${prefix}*`);
+    cursor = result[0];
+    keys.push(...result[1]);
+  } while (cursor !== '0');
+
+  // Fetch values for each key
+  const values = await Promise.all(keys.map(key => redis.get(key)));
+
+  // Combine keys and values into an object
+  const keyValuePairs = keys.reduce((acc, key, index) => {
+    acc.push({key: key, value: values[index] });
+    return acc;
+  }, {});
+
+  return keyValuePairs;
+}
+
 module.exports = {
   setKeyValuePair,
   getValueForKey,
-  setKeyValuePairWithTTL
+  setKeyValuePairWithTTL,
+  getAllKeyValuesWithPrefix
 }
 
 

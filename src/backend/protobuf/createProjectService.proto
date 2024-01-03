@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+service CreateProjectService {
+    rpc CreateProjectService (CreateProjectRequest) returns (CreateProjectResponse);
+}
+
+message CreateProjectRequest {
+    string projectName = 1;
+}
+
+message Project {
+    string projectId = 1;
+    string projectName = 2;
+    string projectToken = 3;
+    repeated string users = 4;
+    repeated string commits = 5;
+}
+
+
+message CreateProjectResponse {
+    uint32 code = 1;
+    Project project = 2;
+    string projectToken = 3;
+}

@@ -11,6 +11,9 @@ message GetProjectsFromUserRequest {
 message Project {
     string projectId = 1;
     string projectName = 2;
+    string projectToken = 3;
+    repeated string users = 4;
+    repeated string commits = 5;
 }
 
 message GetProjectsFromUserResponse {

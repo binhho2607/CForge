@@ -43,10 +43,7 @@ module.exports = (server) => {
                             },
                             raw: true,
                         });
-                        projects.push({
-                            projectId: projectQuery.projectId,
-                            projectName: projectQuery.projectName
-                        });
+                        projects.push(projectQuery);
                     }
                     callback(null, {
                         code: grpc.status.OK,

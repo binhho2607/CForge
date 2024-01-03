@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service GetProjectService {
+    rpc GetProjectService (GetProjectRequest) returns (GetProjectResponse);
+}
+
+message GetProjectRequest {
+    string projectId = 1;
+}
+
+message Project {
+    string projectId = 1;
+    string projectName = 2;
+    string projectToken = 3;
+    repeated string users = 4;
+    repeated string commits = 5;
+}
+
+message Config {
+    string key = 1;
+    string value = 2;
+}
+
+message GetProjectResponse {
+    uint32 code = 1;
+    Project project = 2;
+    repeated Config configs = 3;
+}
