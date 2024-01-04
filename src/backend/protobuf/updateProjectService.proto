@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service UpdateProjectService {
+    rpc UpdateProjectService (UpdateProjectRequest) returns (UpdateProjectResponse);
+}
+
+message UpdateProjectRequest {
+    string projectId = 1;
+    repeated ConfigUpdate configUpdates = 2;
+}
+
+message ConfigUpdate {
+    string oldKey = 1;
+    string newKey = 2;
+    string oldValue = 3;
+    string newValue = 4;
+    
+}
+
+message UpdateProjectResponse {
+    uint32 code = 1;
+}

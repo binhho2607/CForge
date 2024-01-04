@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service DeleteProjectService {
+    rpc DeleteProjectService (DeleteProjectRequest) returns (DeleteProjectResponse);
+}
+
+message DeleteProjectRequest {
+    string projectId = 1;
+}
+
+message DeleteProjectResponse {
+    uint32 code = 1;
+}
