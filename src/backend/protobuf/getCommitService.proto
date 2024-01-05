@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+service GetCommitService {
+    rpc GetCommitService (GetCommitRequest) returns (GetCommitResponse);
+}
+
+message GetCommitRequest {
+    string commitId = 1;
+}
+
+message Change {
+    string changeId = 1;
+    string changeType = 2;
+    string key = 3;
+    string oldValue = 4;
+    string newValue = 5;
+}
+message Commit {
+    string commitId = 1;
+    repeated Change changes = 2;
+    string userId = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+
+
+message GetCommitResponse {
+    uint32 code = 1;
+    Commit commit = 2;
+}

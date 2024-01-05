@@ -1,4 +1,4 @@
-// source: getService
+// source: GetService
 /**
  * @fileoverview
  * @enhanceable
@@ -70,7 +70,7 @@ proto.GetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.GetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    project: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    projectid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     key: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -110,7 +110,7 @@ proto.GetRequest.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProject(value);
+      msg.setProjectid(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -145,7 +145,7 @@ proto.GetRequest.prototype.serializeBinary = function() {
  */
 proto.GetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getProject();
+  f = message.getProjectid();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -163,10 +163,10 @@ proto.GetRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string project = 1;
+ * optional string projectId = 1;
  * @return {string}
  */
-proto.GetRequest.prototype.getProject = function() {
+proto.GetRequest.prototype.getProjectid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -175,7 +175,7 @@ proto.GetRequest.prototype.getProject = function() {
  * @param {string} value
  * @return {!proto.GetRequest} returns this
  */
-proto.GetRequest.prototype.setProject = function(value) {
+proto.GetRequest.prototype.setProjectid = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

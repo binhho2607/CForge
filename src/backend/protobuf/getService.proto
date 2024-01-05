@@ -5,7 +5,7 @@ service GetService {
 }
 
 message GetRequest {
-    string project = 1;
+    string projectId = 1;
     string key = 2;
 }
 
@@ -16,6 +16,5 @@ message Config {
 
 message GetResponse {
     uint32 code = 1;
-    string message = 2;
-    Config config = 3;
+    Config config = 2;
 }

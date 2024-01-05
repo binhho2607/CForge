@@ -1,4 +1,4 @@
-// source: GetService
+// source: GetCommitService
 /**
  * @fileoverview
  * @enhanceable
@@ -11,7 +11,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-goog.provide('proto.Config');
+goog.provide('proto.Change');
 
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
@@ -27,16 +27,16 @@ goog.require('jspb.Message');
  * @extends {jspb.Message}
  * @constructor
  */
-proto.Config = function(opt_data) {
+proto.Change = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.Config, jspb.Message);
+goog.inherits(proto.Change, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.Config.displayName = 'proto.Config';
+  proto.Change.displayName = 'proto.Change';
 }
 
 
@@ -54,8 +54,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.Config.prototype.toObject = function(opt_includeInstance) {
-  return proto.Config.toObject(opt_includeInstance, this);
+proto.Change.prototype.toObject = function(opt_includeInstance) {
+  return proto.Change.toObject(opt_includeInstance, this);
 };
 
 
@@ -64,14 +64,17 @@ proto.Config.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.Config} msg The msg instance to transform.
+ * @param {!proto.Change} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.Config.toObject = function(includeInstance, msg) {
+proto.Change.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, "")
+    changeid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    changetype: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    key: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    oldvalue: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    newvalue: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -85,23 +88,23 @@ proto.Config.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.Config}
+ * @return {!proto.Change}
  */
-proto.Config.deserializeBinary = function(bytes) {
+proto.Change.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.Config;
-  return proto.Config.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.Change;
+  return proto.Change.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.Config} msg The message object to deserialize into.
+ * @param {!proto.Change} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.Config}
+ * @return {!proto.Change}
  */
-proto.Config.deserializeBinaryFromReader = function(msg, reader) {
+proto.Change.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -110,11 +113,23 @@ proto.Config.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setKey(value);
+      msg.setChangeid(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setValue(value);
+      msg.setChangetype(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setKey(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOldvalue(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNewvalue(value);
       break;
     default:
       reader.skipField();
@@ -129,9 +144,9 @@ proto.Config.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.Config.prototype.serializeBinary = function() {
+proto.Change.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.Config.serializeBinaryToWriter(this, writer);
+  proto.Change.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -139,23 +154,44 @@ proto.Config.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.Config} message
+ * @param {!proto.Change} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.Config.serializeBinaryToWriter = function(message, writer) {
+proto.Change.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getChangeid();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getValue();
+  f = message.getChangetype();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getOldvalue();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getNewvalue();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -163,38 +199,92 @@ proto.Config.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string key = 1;
+ * optional string changeId = 1;
  * @return {string}
  */
-proto.Config.prototype.getKey = function() {
+proto.Change.prototype.getChangeid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.Config} returns this
+ * @return {!proto.Change} returns this
  */
-proto.Config.prototype.setKey = function(value) {
+proto.Change.prototype.setChangeid = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string value = 2;
+ * optional string changeType = 2;
  * @return {string}
  */
-proto.Config.prototype.getValue = function() {
+proto.Change.prototype.getChangetype = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.Config} returns this
+ * @return {!proto.Change} returns this
  */
-proto.Config.prototype.setValue = function(value) {
+proto.Change.prototype.setChangetype = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string key = 3;
+ * @return {string}
+ */
+proto.Change.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Change} returns this
+ */
+proto.Change.prototype.setKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string oldValue = 4;
+ * @return {string}
+ */
+proto.Change.prototype.getOldvalue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Change} returns this
+ */
+proto.Change.prototype.setOldvalue = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string newValue = 5;
+ * @return {string}
+ */
+proto.Change.prototype.getNewvalue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Change} returns this
+ */
+proto.Change.prototype.setNewvalue = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
