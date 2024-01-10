@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-dark vh-100" style={{backgroundSize: "cover"}}>
       <AuthProvider>
         <Router>
           <Routes>
