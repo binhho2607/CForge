@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import ProjectsPage from './pages/ProjectsPage';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 // redirects to /login if user is not authenticated
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             {/* <Route path="/" element={<Navigate to="/dashboard" />}/> */}
             <Route path="/login" element={<LoginPage/>} />
+            <Route path="/projects" element={<ProjectsPage/>}/>
             <Route
               path="*"
               element={<Navigate to="/" />}

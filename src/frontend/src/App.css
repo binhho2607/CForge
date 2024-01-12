@@ -52,3 +52,7 @@
 .fade-in {
   animation: fadeIn 0.75s ease-in-out;
 }
+
+.h-7 {
+  height: 7%;
+}

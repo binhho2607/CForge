@@ -1,7 +1,5 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
-// import dotenv from 'dotenv'
-// dotenv.config()
 
 const Login = () => {
   const responseGoogle = (response) => {

@@ -19,7 +19,7 @@ const LoginPage = () => {
         </div>
         <div className='row d-flex mt-3'>
           <div className="col-12">
-            <button className='btn btn-info text-secondary'>
+            <button className='btn btn-secondary'>
               Documentations
             </button>
           </div>
