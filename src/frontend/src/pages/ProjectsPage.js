@@ -3,7 +3,7 @@ import '../App.css'
 import Project from '../components/Project';
 import { IoTrashOutline } from "react-icons/io5";
 
-const ProjectsPage = () => {
+const ProjectsPage = ({handleSetProject}) => {
   const [projects, setProjects] = useState([
     {
       projectId: "123",
@@ -19,6 +19,10 @@ const ProjectsPage = () => {
     }
   ])
 
+  const handleProjectOnClick = (project) => {
+    handleSetProject(project);
+  }
+
   return (
     <div className='vh-100 bg-dark text-white d-flex justify-content-center overflow-scroll'>
       <div className='containter mt-5 w-50'>
@@ -33,8 +37,8 @@ const ProjectsPage = () => {
             projects.map((project) => {
               return (
                 <div className='row d-flex mt-3 h-7 '>
-                  <div className='col-11'>
-                    <Project project={project}/>
+                  <div className='col-11' onClick={() => handleProjectOnClick(project)}>
+                    <Project project={project} />
                   </div>
                   <div className='col-1 mt-2 text-center text-danger'>
                     <IoTrashOutline size={20} style={{cursor: "pointer"}}/>
