@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import '../App.css'
 import Project from '../components/Project';
 import { IoTrashOutline } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const ProjectsPage = ({handleSetProject}) => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([
     {
       projectId: "123",
@@ -21,11 +24,13 @@ const ProjectsPage = ({handleSetProject}) => {
 
   const handleProjectOnClick = (project) => {
     handleSetProject(project);
+    navigate('/project');
   }
 
   return (
     <div className='vh-100 bg-dark text-white d-flex justify-content-center overflow-scroll'>
       <div className='containter mt-5 w-50'>
+        <Navbar/>
         <div className='row d-flex mt-3 text-start display-4'>
             Projects
         </div>
