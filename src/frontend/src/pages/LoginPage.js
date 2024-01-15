@@ -3,7 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import Login from '../components/Login'
 import '../App.css'
 
-const LoginPage = () => {
+const LoginPage = ({handleAuthentication}) => {
   return (
     <div className='vh-100 bg-dark text-white d-flex align-items-center justify-content-center'>
       <div className='containter'>
@@ -27,7 +27,7 @@ const LoginPage = () => {
         <div className='row d-flex mt-3 justify-content-center'>
           <div className="col-12">
             <div>
-              <Login/>
+              <Login handleAuthentication={handleAuthentication}/>
             </div>
           </div>
         </div>

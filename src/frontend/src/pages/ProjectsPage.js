@@ -5,7 +5,8 @@ import { IoTrashOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-const ProjectsPage = ({handleSetProject}) => {
+const ProjectsPage = ({user, idToken, handleSetProject}) => {
+  console.log(user)
   const navigate = useNavigate();
   const [projects, setProjects] = useState([
     {
@@ -30,7 +31,7 @@ const ProjectsPage = ({handleSetProject}) => {
   return (
     <div className='vh-100 bg-dark text-white d-flex justify-content-center overflow-scroll'>
       <div className='containter mt-5 w-50'>
-        <Navbar/>
+        <Navbar user={user}/>
         <div className='row d-flex mt-3 text-start display-4'>
             Projects
         </div>

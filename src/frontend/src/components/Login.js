@@ -1,20 +1,25 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
+import { useNavigate  } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({handleAuthentication}) => {
+  const navigate = useNavigate();
   const responseGoogleSuccess = (response) => {
-    console.log(response);
+    const idToken = response.credential;
+    handleAuthentication(idToken);
+    navigate('/projects');
     // Handle the Google Sign-In response here
   };
 
   const responseGoogleFailure = (response) => {
-    console.log("response");
+    console.log(response);
     // Handle the Google Sign-In response here
   };
 
+
   return (
     <GoogleLogin
-      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
       buttonText="Login with Google"
       onSuccess={responseGoogleSuccess}
       onFailure={responseGoogleFailure}

@@ -6,12 +6,12 @@ import { GoGear } from "react-icons/go";
 import { MdHistory } from "react-icons/md";
 import Navbar from '../components/Navbar';
 
-const ProjectPage = ({project, startingConfigs}) => {
+const ProjectPage = ({user, idToken, project, startingConfigs}) => {
     const [configs, setConfigs] = useState(startingConfigs);
     return (
         <div className='vh-100 bg-dark text-white d-flex justify-content-center overflow-scroll'>
         <div className='containter mt-5 w-50'>
-            <Navbar/>
+            <Navbar user={user}/>
             <div className='row d-flex mt-3 text-start display-4'>
                 <div className='col-11'>
                     {project.projectName}
