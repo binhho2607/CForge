@@ -13,12 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [idToken, setIdToken] = useState("");
 
-  const [project, setProject] = useState({
-    projectId: "123",
-    projectName: "Project 1",
-    users: ["user1", "user2"],
-    commits: []
-  });
+  const [project, setProject] = useState(null);
   const [startingConfigs, setStartingConfigs] = useState([
     {
       key: 'a',
@@ -35,6 +30,15 @@ function App() {
     const userObject = jwtDecode(idToken);
     setUser(userObject);
     localStorage.setItem('idToken', idToken);
+  }
+
+  const handleSignout = () => {
+    localStorage.removeItem('idToken');
+    setProject(null);
+    setStartingConfigs(null);
+    setUser(null);
+    setIdToken("");
+    navigate('/login');
   }
 
   useEffect(() => {
@@ -58,8 +62,8 @@ function App() {
           <Routes>
             {/* <Route path="/" element={<Navigate to="/dashboard" />}/> */}
             <Route path="/login" element={<LoginPage handleAuthentication={handleAuthentication}/>} />
-            <Route path="/projects" element={<ProjectsPage user={user} idToken={idToken} handleSetProject={handleSetProject}/>}/>
-            <Route path="/project" element={<ProjectPage user={user} idToken={idToken} project={project} startingConfigs={startingConfigs}/>}/>
+            <Route path="/projects" element={<ProjectsPage user={user} idToken={idToken} handleSetProject={handleSetProject} handleSignout={handleSignout}/>}/>
+            <Route path="/project" element={<ProjectPage user={user} idToken={idToken} project={project} startingConfigs={startingConfigs} handleSignout={handleSignout}/>}/>
             <Route
               path="*"
               element={<Navigate to="/" />}

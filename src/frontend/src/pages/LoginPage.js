@@ -25,7 +25,7 @@ const LoginPage = ({handleAuthentication}) => {
           </div>
         </div>
         <div className='row d-flex mt-3 justify-content-center'>
-          <div className="col-12">
+          <div className="col-8">
             <div>
               <Login handleAuthentication={handleAuthentication}/>
             </div>
